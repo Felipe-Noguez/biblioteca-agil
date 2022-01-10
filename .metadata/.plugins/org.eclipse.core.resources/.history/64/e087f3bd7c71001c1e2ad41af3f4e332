@@ -1,0 +1,42 @@
+package com.noguez.exercicioaceleradora.biblioteca;
+
+public class Biblioteca extends Livro{
+	
+	Status status;
+
+	public Biblioteca(int id, String titulo, String autor, int ano, Status status, String emprestado) {
+		super(id, titulo, autor, ano, status, emprestado);
+		this.status = status.INDISPONIVEL;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	//public void verificar() {}
+	
+	public Status disponibilidade() {
+		if(status == Status.DISPONIVEL) {
+			return status.DISPONIVEL;
+		}else {
+			return status.INDISPONIVEL;
+		}
+	}
+	
+	public void retirar() {
+		status = status.INDISPONIVEL;
+	}
+		
+	public void devolver() {
+		status = status.DISPONIVEL;
+	}
+		
+	public void doar() {
+		
+	}
+
+}

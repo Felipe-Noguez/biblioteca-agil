@@ -1,0 +1,51 @@
+package com.noguez.exercicioaceleradora.biblioteca;
+
+public class GerenciadorLivro extends Livro{
+	
+	Status status;
+
+	
+	
+	public GerenciadorLivro(int id, String titulo, String autor, int ano, Status status, String emprestado) {
+		super(id, titulo, autor, ano, status, emprestado);
+		this.status = status.INDISPONIVEL;
+	}
+	
+	
+
+	public GerenciadorLivro() {
+	}
+
+
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	//public void verificar() {}
+	
+	public Status disponibilidade() {
+		if(status == Status.DISPONIVEL) {
+			return status.DISPONIVEL;
+		}else {
+			return status.INDISPONIVEL;
+		}
+	}
+	
+	public void retirar() {
+		status = status.INDISPONIVEL;
+	}
+		
+	public void devolver() {
+		status = status.DISPONIVEL;
+	}
+		
+	public void doar() {
+		
+	}
+
+}

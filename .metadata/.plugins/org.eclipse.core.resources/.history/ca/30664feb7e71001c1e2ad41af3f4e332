@@ -1,0 +1,22 @@
+package com.noguez.exercicioaceleradora.biblioteca;
+
+public class Application {
+
+	
+	public static void main(String[] args) {
+		
+		System.out.println("Hello World");
+		
+		String nome = "Felipe";
+		
+		do {
+			i++;
+			System.out.println(i);
+		} while(i < 15);
+		
+	}
+	
+	
+	
+
+}

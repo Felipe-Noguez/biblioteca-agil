@@ -1,0 +1,20 @@
+package com.noguez.exercicioaceleradora.biblioteca;
+
+public class Application {
+
+	
+	public static void main(String[] args) {
+		
+		System.out.println("Hello World");
+		
+		do {
+			i++;
+			System.out.println(i);
+		} while(i < 15);
+		
+	}
+	
+	
+	
+
+}

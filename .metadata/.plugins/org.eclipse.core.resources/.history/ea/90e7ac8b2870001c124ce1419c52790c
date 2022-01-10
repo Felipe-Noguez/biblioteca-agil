@@ -1,0 +1,12 @@
+package com.noguez.exercicioaceleradora.biblioteca;
+
+public class Livro {
+
+	private int id;
+	private String titulo;
+	private String autor;
+	private int ano;
+	private Status status;
+	private String emprestado;
+	
+}

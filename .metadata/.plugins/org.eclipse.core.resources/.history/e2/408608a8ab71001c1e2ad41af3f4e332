@@ -1,0 +1,56 @@
+package com.noguez.exercicioaceleradora.biblioteca;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GerenciadorLivro{
+	
+	private Status status;
+	List<Livro> listaLivro = new ArrayList<Livro>();
+	
+	
+	
+	public GerenciadorLivro(int id, String titulo, String autor, int ano, Status status, String emprestado,
+			Status status2, ArrayList<Livro> listaLivro) {
+		status = status2;
+		this.listaLivro = listaLivro;
+	}
+
+	public GerenciadorLivro() {
+	}
+	
+	private void preCadastrar() {
+		listaLivro.add(new Livro(1, "Como fazer sentido e bater o martelo", 2017, Status.DISPONIVEL));
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	//public void verificar() {}
+	
+	public Status disponibilidade() {
+		if(status == Status.DISPONIVEL) {
+			return status.DISPONIVEL;
+		}else {
+			return status.INDISPONIVEL;
+		}
+	}
+	
+	public void retirar() {
+		status = status.INDISPONIVEL;
+	}
+		
+	public void devolver() {
+		status = status.DISPONIVEL;
+	}
+		
+	public void doar() {
+		
+	}
+
+}
