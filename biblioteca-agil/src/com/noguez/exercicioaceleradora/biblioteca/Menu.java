@@ -18,7 +18,7 @@ public class Menu {
 			System.out.println("4 - Listar livros.");
 			System.out.println("5 - Sair.");
 
-			System.out.println("Escolha uma opção: ");
+			System.out.print("Escolha uma opção: ");
 			opcao = input.nextInt();
 			
 			switch (opcao) {
@@ -29,7 +29,7 @@ public class Menu {
 				gerenciadorLivro.devolver();
 				break;
 			case 3:
-				//doar();
+				gerenciadorLivro.doar();
 				break;
 			case 4:
 				gerenciadorLivro.listarLivros();
@@ -40,7 +40,7 @@ public class Menu {
 				System.out.println("Opção Inválida!");
 				break;
 			}
-		} while (opcao != 4);
+		} while (opcao != 5);
 	}
 	
 	

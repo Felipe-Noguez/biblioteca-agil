@@ -2,9 +2,12 @@ package com.noguez.exercicioaceleradora.biblioteca;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collector;
 
 public class GerenciadorLivro{
 	
+	Scanner input = new Scanner(System.in);
 	private Status status;
 	private List<Livro> listaLivro = new ArrayList<>();
 	
@@ -13,9 +16,9 @@ public class GerenciadorLivro{
 	}
 	
 	private void preCadastrarLivros() {
-		listaLivro.add(new Livro(1, "Como fazer sentido e bater o martelo", "Alexandro Aolchique", 2017, Status.DISPONIVEL));
-		listaLivro.add(new Livro(2, "Sejamos todos feministas", "Chimamanda Ngozi Adichie", 2015, Status.DISPONIVEL));
-		listaLivro.add(new Livro(3, "Basquete 101", "Alexandro Aolchique", 2010, Status.DISPONIVEL));
+		listaLivro.add(new Livro(0, "Como fazer sentido e bater o martelo", "Alexandro Aolchique", 2017, Status.DISPONIVEL));
+		listaLivro.add(new Livro(1, "Sejamos todos feministas", "Chimamanda Ngozi Adichie", 2015, Status.DISPONIVEL));
+		listaLivro.add(new Livro(2, "Basquete 101", "Alexandro Aolchique", 2010, Status.DISPONIVEL));
 	}
 
 	public Status getStatus() {
@@ -24,9 +27,7 @@ public class GerenciadorLivro{
 
 	public void setStatus(Status status) {
 		this.status = status;
-	}
-	
-	//public void verificar() {}
+	}	
 	
 	public Status disponibilidade() {
 		if(status == Status.DISPONIVEL) {
@@ -37,20 +38,67 @@ public class GerenciadorLivro{
 	}
 	
 	public void retirar() {
-		status = status.INDISPONIVEL;
+		try {
+			int codigo;
+			System.out.print("Entre com o código do livro a ser retirado: ");
+			codigo = input.nextInt();
+			input.nextLine();
+
+			for (Livro livro : listaLivro) {
+				if (livro.getId() == codigo && livro.getStatus() == status.DISPONIVEL) {
+					livro.setStatus(Status.INDISPONIVEL);
+				} else {
+					System.out.println("Livro indisponível.");
+				}
+			} 
+		} catch (Exception e) {
+			System.out.println("Algum valor inválido, verifique e tente novamente!");
+		}
+		//tentei implmentar com Lambda, mas não obtive sucesso T_T
+		//listaLivro.stream().filter(c -> c.getId() == codigo).map(l -> l.getStatus().compareTo(status.DISPONIVEL));
+		
 	}
 		
 	public void devolver() {
-		status = status.DISPONIVEL;
-	}
+		try {
+			int codigo;
+			System.out.print("Entre com o código do livro a ser devolvido: ");
+			codigo = input.nextInt();
+			input.nextLine();
+
+			for (Livro livro : listaLivro) {
+				if (livro.getId() == codigo && livro.getStatus() == status.INDISPONIVEL) {
+					livro.setStatus(Status.DISPONIVEL);
+				} else {
+					System.out.println("Livro disponível.");
+				}
+			} 
+		} catch (Exception e) {
+			System.out.println("Algum valor inválido, verifique e tente novamente!");
+		}
+	}	
 		
 	public void doar() {
-		
-	}
+		try {
+			int novoId = listaLivro.size();
+			System.out.print("Entre com o título do livro a ser doado: ");
+			String titulo = input.nextLine();
+			System.out.print("Entre com o autor do livro a ser doado: ");
+			String autor = input.nextLine();
+			System.out.print("Entre com o ano de publicação do livro a ser doado: ");
+			int ano = input.nextInt();
+			input.nextLine();
+
+			listaLivro.add(new Livro(novoId, titulo, autor, ano, Status.DISPONIVEL));
+			System.out.println("Obrigado por sua doação! :D");
+		} catch (Exception e) {
+			System.out.println("Algum valor inválido, verifique e tente novamente!");
+		}
+	}	
 	
 	public void listarLivros() {
 		for (Livro livro : listaLivro) {
-			System.out.println(livro.getTitulo());
+			System.out.println("Código: " + livro.getId() + ", Título: " + livro.getTitulo() + ", Autor: " + livro.getAutor() + ", Status: " + livro.getStatus());
 		}
 	}
 
